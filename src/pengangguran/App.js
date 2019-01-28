@@ -9,7 +9,7 @@ const AppRouter = () => (
   <Router>
     <div>
       <Header />
-
+      {/* come to papa */}
       <Route path="/" exact component={Home} />
       <Route path="/post/:id" component={PostDetail} />
     </div>
