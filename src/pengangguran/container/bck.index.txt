@@ -1,0 +1,97 @@
+<Grid item xs={8} sm={6} style={{ padding: 25 }}>
+              {this.state.article.map(artic => (
+                <div redirect="/post" style={{ paddingTop: 25 }}>
+                  <Paper>
+                    <Zoom
+                      in={true}
+                      style={{ transitionDelay: true ? "100ms" : "0ms" }}
+                    >
+                      <div
+                        className="article "
+                        style={{
+                          backgroundImage: "url(" + artic.thumbnail + ")",
+                          backgroundPosition: "center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat"
+                        }}
+                      >
+                        {/* <div>
+                            <img
+                              src={artic.thumbnail}
+                              className="thumbnail-img"
+                            />
+                          </div> */}
+                        <div className="wrap-article">
+                          <div>
+                            <Link
+                              to={{
+                                pathname: `/post/${artic.title}`,
+                                state: {
+                                  id: artic.id,
+                                  title: artic.title,
+                                  body: artic.body,
+                                  time: artic.time,
+                                  writer: artic.writer,
+                                  thumbnail: artic.thumbnail
+                                }
+                              }}
+                            >
+                              <Typography variant="h3" component="h3">
+                                <font
+                                  style={{
+                                    color: "#ecf0f1",
+                                    fontWeight: "bold",
+                                    fontSize: 15
+                                  }}
+                                >
+                                  {artic.title}
+                                </font>
+                              </Typography>
+                            </Link>
+                          </div>
+                          <div>
+                            <Typography
+                              style={{ paddingTop: 10 }}
+                              variant="subtitle1"
+                              component="p"
+                            >
+                              <font
+                                style={{
+                                  color: "#ecf0f1",
+                                  fontWeight: "bold",
+                                  fontSize: 12
+                                }}
+                              >
+                                {artic.body}
+                              </font>
+                            </Typography>
+                          </div>
+                          <div>
+                            <Typography
+                              style={{ cursor: "pointer", paddingTop: 5 }}
+                            >
+                              <font
+                                style={{
+                                  color: "#ecf0f1",
+                                  fontWeight: "bold",
+                                  fontSize: 9
+                                }}
+                              >
+                                {artic.time}
+                              </font>
+                            </Typography>
+                          </div>
+                        </div>
+                      </div>
+                    </Zoom>
+                  </Paper>
+                </div>
+              ))}
+            </Grid>
+            <Grid item xs={4} sm={6} style={{ padding: 25 }}>
+              <div style={{ paddingTop: 25 }}>
+                <Paper>
+                  <Profile />
+                </Paper>
+              </div>
+            </Grid>

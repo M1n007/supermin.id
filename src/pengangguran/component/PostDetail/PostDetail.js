@@ -19,16 +19,15 @@ class PostDetail extends React.Component {
             <h2 className={classes.postDetailTitle}>
               {this.props.location.state.title}
             </h2>
-            <Grid container className={classes.postInfo} alignItems="center">
+            <Grid
+              container
+              className={classes.postInfo}
+              alignItems="center"
+              spacing={20}
+            >
               <Grid item>
                 <p className={classes.postDate}>
                   {this.props.location.state.time}
-                </p>
-              </Grid>
-              <Grid item />
-              <Grid item>
-                <p className={classes.postReadTime}>
-                  {this.props.location.state.writer}
                 </p>
               </Grid>
             </Grid>
@@ -44,8 +43,8 @@ class PostDetail extends React.Component {
 
 const styles = {
   postDetailRoot: {
-    flexGrow: 1,
-    borderRadius: "5px"
+    margin: 0,
+    padding: 30
   },
   postDetailTitleImageRoot: {
     marginBottom: "20px",
@@ -54,10 +53,8 @@ const styles = {
   postDetailTitleImage: {
     width: "100%",
     height: "auto",
-    backgroundColor: "#545454",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
     borderRadius: "2px"
   },
   postDetailTitle: {
