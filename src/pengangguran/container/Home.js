@@ -69,10 +69,29 @@ export default class PengangguranIndex extends Component {
         writer: "Admin",
         thumbnail:
           "https://mybroadband.co.za/news/wp-content/uploads/2018/10/AWS-Amazon-Web-Services-Dark.jpg"
+      },
+      {
+        id: 5,
+        title: "Apa itu AWS ?",
+        body: `Apa itu aws, dan apa kegunaan aws ?, sekarang kalian harus tahu tentang aws ? snagat penting hmmm`,
+        time: "Sabtu, 15 Desember 2018",
+        writer: "Admin",
+        thumbnail:
+          "https://mybroadband.co.za/news/wp-content/uploads/2018/10/AWS-Amazon-Web-Services-Dark.jpg"
+      },
+      {
+        id: 6,
+        title: "Apa itu AWS ?",
+        body: `Apa itu aws, dan apa kegunaan aws ?, sekarang kalian harus tahu tentang aws ? snagat penting hmmm`,
+        time: "Sabtu, 15 Desember 2018",
+        writer: "Admin",
+        thumbnail:
+          "https://mybroadband.co.za/news/wp-content/uploads/2018/10/AWS-Amazon-Web-Services-Dark.jpg"
       }
     ],
     activePage: 1,
     page: 1,
+    perPage: 5,
     previousPageCheck: false
   };
 
@@ -91,100 +110,120 @@ export default class PengangguranIndex extends Component {
   }
 
   render() {
+    const indexOfLastTodo = this.state.activePage * this.state.perPage;
+    const indexOfFirstTodo = indexOfLastTodo - this.state.perPage;
+    const lastArticle = this.state.article.slice(
+      indexOfFirstTodo,
+      indexOfLastTodo
+    );
     return (
       <div>
         <div className="wrap">
           {/* <div className="body"> */}
           <Grid container spacing={24}>
             <Grid item xs={12} sm={7}>
-              {this.state.article.map(artic => (
-                <div redirect="/post" style={{ paddingTop: 25 }}>
-                  <Paper>
-                    <Zoom
-                      in={true}
-                      style={{ transitionDelay: true ? "100ms" : "0ms" }}
-                    >
-                      <div
-                        className="article "
-                        style={{
-                          backgroundImage: "url(" + artic.thumbnail + ")",
-                          backgroundPosition: "center",
-                          backgroundSize: "cover",
-                          backgroundRepeat: "no-repeat"
-                        }}
+              <font style={{ fontWeight: "bold" }}>Halaman : </font>
+              <font style={{ fontWeight: "bold" }}>
+                {this.state.activePage}
+              </font>
+              {lastArticle.length === 0 || lastArticle === undefined ? (
+                <Paper>
+                  <div style={{ padding: 25 }}>
+                    <font style={{ fontWeight: "bold", fontSize: 25 }}>
+                      OoPs, this the last page :'(
+                    </font>
+                  </div>
+                </Paper>
+              ) : (
+                lastArticle.map(artic => (
+                  <div redirect="/post" style={{ paddingTop: 25 }}>
+                    <Paper>
+                      <Zoom
+                        in={true}
+                        style={{ transitionDelay: true ? "100ms" : "0ms" }}
                       >
-                        {/* <div>
+                        <div
+                          className="article "
+                          style={{
+                            backgroundImage: "url(" + artic.thumbnail + ")",
+                            backgroundPosition: "center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat"
+                          }}
+                        >
+                          {/* <div>
                             <img
                               src={artic.thumbnail}
                               className="thumbnail-img"
                             />
                           </div> */}
-                        <div className="wrap-article">
-                          <div>
-                            <Link
-                              to={{
-                                pathname: `/post/${artic.title}`,
-                                state: {
-                                  id: artic.id,
-                                  title: artic.title,
-                                  body: artic.body,
-                                  time: artic.time,
-                                  writer: artic.writer,
-                                  thumbnail: artic.thumbnail
-                                }
-                              }}
-                            >
-                              <Typography variant="h3" component="h3">
+                          <div className="wrap-article">
+                            <div>
+                              <Link
+                                to={{
+                                  pathname: `/post/${artic.title}`,
+                                  state: {
+                                    id: artic.id,
+                                    title: artic.title,
+                                    body: artic.body,
+                                    time: artic.time,
+                                    writer: artic.writer,
+                                    thumbnail: artic.thumbnail
+                                  }
+                                }}
+                              >
+                                <Typography variant="h3" component="h3">
+                                  <font
+                                    style={{
+                                      color: "#ecf0f1",
+                                      fontWeight: "bold",
+                                      fontSize: 15
+                                    }}
+                                  >
+                                    {artic.title}
+                                  </font>
+                                </Typography>
+                              </Link>
+                            </div>
+                            <div>
+                              <Typography
+                                style={{ paddingTop: 10 }}
+                                variant="subtitle1"
+                                component="p"
+                              >
                                 <font
                                   style={{
                                     color: "#ecf0f1",
                                     fontWeight: "bold",
-                                    fontSize: 15
+                                    fontSize: 12
                                   }}
                                 >
-                                  {artic.title}
+                                  {artic.body}
                                 </font>
                               </Typography>
-                            </Link>
-                          </div>
-                          <div>
-                            <Typography
-                              style={{ paddingTop: 10 }}
-                              variant="subtitle1"
-                              component="p"
-                            >
-                              <font
-                                style={{
-                                  color: "#ecf0f1",
-                                  fontWeight: "bold",
-                                  fontSize: 12
-                                }}
+                            </div>
+                            <div>
+                              <Typography
+                                style={{ cursor: "pointer", paddingTop: 5 }}
                               >
-                                {artic.body}
-                              </font>
-                            </Typography>
-                          </div>
-                          <div>
-                            <Typography
-                              style={{ cursor: "pointer", paddingTop: 5 }}
-                            >
-                              <font
-                                style={{
-                                  color: "#ecf0f1",
-                                  fontWeight: "bold",
-                                  fontSize: 9
-                                }}
-                              >
-                                {artic.time}
-                              </font>
-                            </Typography>
+                                <font
+                                  style={{
+                                    color: "#ecf0f1",
+                                    fontWeight: "bold",
+                                    fontSize: 9
+                                  }}
+                                >
+                                  {artic.time}
+                                </font>
+                              </Typography>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Zoom>
-                  </Paper>
-                </div>
-              ))}
+                      </Zoom>
+                    </Paper>
+                  </div>
+                ))
+              )}
             </Grid>
             <Grid
               item
@@ -207,7 +246,14 @@ export default class PengangguranIndex extends Component {
                   ) : null}
                 </Grid>
                 <Grid item sm={12}>
-                  <Fab onClick={() => this.nextPage()} aria-label="next">
+                  <Fab
+                    onClick={
+                      lastArticle.length == 0 || lastArticle == undefined
+                        ? null
+                        : () => this.nextPage()
+                    }
+                    aria-label="next"
+                  >
                     <KeyboardArrowRight />
                   </Fab>
                 </Grid>
